@@ -31,7 +31,6 @@ RSpec.feature "User submits a new artist" do
 
   context "the submitted data is invalid" do
     scenario "they see an error message" do
-      pending
       # as a User
       # when I visit the artist index
       # and I click new artist
@@ -46,7 +45,7 @@ RSpec.feature "User submits a new artist" do
       fill_in "artist_image_path", with: artist_image_path
       click_on "Create Artist"
 
-      expect(page).to have_content "Name cannot be blank!"
+      expect(page).to have_content "Name can't be blank"
     end
   end
 end
