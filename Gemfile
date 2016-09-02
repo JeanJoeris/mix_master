@@ -40,6 +40,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :development do
