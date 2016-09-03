@@ -2,6 +2,10 @@
   <h1><%= @artist.name %></h1>
   <%= image_tag @artist.image_path %>
 </div>
+<div class="song_info">
+  <%= link_to "New Song", new_artist_song_path(@artist) %>
+</div>
 
-<%= link_to "Edit", edit_artist_path(@artist) %>
-<%= link_to "Delete", artist_path(@artist), method: :delete %>
+<%= link_to "Edit", edit_artist_path(@artist) %> |
+<%= link_to "Delete", artist_path(@artist), method: :delete %> |
+<%= link_to "Artists", artists_path %>
