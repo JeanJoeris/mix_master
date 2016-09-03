@@ -15,12 +15,12 @@ RSpec.feature "User creates a playlist" do
     song_1, song_2, song_3 = create_list(:song, 3)
     playlist_name = "tunes"
 
-    visit playlist_path
+    visit playlists_path
     click_on "New playlist"
-    fill_in "Playlist_name", with: playlist_name
+    fill_in "playlist_name", with: playlist_name
     check("song-#{song_1.id}")
     check("song-#{song_3.id}")
-    click_on "Create playlist"
+    click_on "Create Playlist"
 
     expect(page).to have_content playlist_name
 
