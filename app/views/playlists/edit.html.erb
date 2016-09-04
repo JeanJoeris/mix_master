@@ -4,13 +4,8 @@
   <%= f.text_field :name %>
   <% @songs.each do |song| %>
     <div>
-      <% if @playlist.songs.include?(song) %>
-        <%= check_box_tag(:song_ids, song.id, true, :name => 'playlist[song_ids][]', id: "song-#{song.id}" ) %>
-        <%= song.title %>
-      <% else %>
-        <%= check_box_tag(:song_ids, song.id, false, :name => 'playlist[song_ids][]', id: "song-#{song.id}" ) %>
-        <%= song.title %>
-      <% end %>
+      <%= check_box_tag(:song_ids, song.id, @playlist.songs.include?(song), :name => 'playlist[song_ids][]', id: "song-#{song.id}" ) %>
+      <%= song.title %>
     </div>
   <% end %>
   <%= f.submit %>
