@@ -13,28 +13,29 @@ RSpec.feature "User edits a playlist" do
     # Then I should see the playlist's updated name
     # And I should see the name of the newly added song
     # And I should not see the name of the removed song
-    playlist = create(:playlist)
-    song = create(:song)
-    playlist_song_1, playlist_song_2 = create_list(:playlist_song, 2, playlist: playlist)
+    playlist = create(:playlist_with_songs)
+    first, second, third = playlist.songs
+
+    new_song = create(:song)
 
     visit playlist_path(playlist)
 
     click_on "Edit"
-    expect(playlist.songs.count).to eq(2)
+    expect(playlist.songs.count).to eq(3)
 
     fill_in "playlist_name", with: "editted tunage"
 
-    check("song-#{song.id}")
-    uncheck("song-#{playlist_song_2.song.id}")
+    check("song-#{new_song.id}")
+    uncheck("song-#{first.id}")
     click_on "Update Playlist"
 
     expect(page).to have_content "editted tunage"
-    expect(playlist.songs.count).to eq(2)
-    
+    expect(playlist.songs.count).to eq(3)
+
     within("ul") do
-      expect(page).to have_link playlist_song_1.song.title, href: song_path(playlist_song_1.song)
-      expect(page).to_not have_link playlist_song_2.song.title, href: song_path(playlist_song_2.song)
-      expect(page).to have_link song.title, href: song_path(song)
+      expect(page).to have_link second.title, href: song_path(second)
+      expect(page).to_not have_link first.title, href: song_path(first)
+      expect(page).to have_link new_song.title, href: song_path(new_song)
     end
 
 
