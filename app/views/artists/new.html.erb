@@ -1,2 +1,3 @@
 <h2>New Artist</h2>
-<%= render 'form' %>
+<%= render partial: "shared/errors", locals: {target: @artist} %>
+<%= render partial: 'form' %>
