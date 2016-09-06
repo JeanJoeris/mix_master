@@ -31,6 +31,8 @@ gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
 gem 'rails_12factor', group: :production
+gem 'omniauth-oauth2'
+gem 'figaro'
 
 
 group :development, :test do
