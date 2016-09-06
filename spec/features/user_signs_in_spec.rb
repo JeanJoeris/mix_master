@@ -9,20 +9,19 @@ RSpec.feature "User signs in with spotify" do
     # And I should see my display name
     # And I should not see "Sign in with Spotify"
     auth_data = {
-      'provider' => 'spotify',
-      'into' => {
-        'uid' => "fake name",
-        'id' => '12345'
+        'provider'  => 'spotify',
+        'info' => {
+          'uid' => 'Fake User',
+          'id'           => '12345'
+        }
       }
-    }
 
     OmniAuth.config.mock_auth[:spotify] = auth_data
 
     visit playlists_path
-    click_on "Sign in with Spotify"
-
-    expect(page).to have_content("Sign Out")
-    expect(page).to have_content(auth_data['info']['uid'])
-    expect(page).to not_have_content("Sign in with Spotify")
+    click_link "Sign in with Spotify"
+    expect(page).to have_content("Sign out")
+    expect(page).to have_content(auth_data['info']['display_name'])
+    expect(page).to_not have_content("Sign in with Spotify")
   end
 end
