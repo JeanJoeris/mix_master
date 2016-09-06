@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     User.find_or_create_by(
       provider: auth["provider"],
       uid: auth["info"]["id"],
-      name: auth["info"]["display_name"]
+      name: auth["info"]["display_name"] || auth["info"]["id"]
     )
   end
 end
